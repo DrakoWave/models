@@ -20,7 +20,9 @@ TOP_TRUSTED_APEX = {
     "amazon.com", "amazon.in", "hdfcbank.com", "icicibank.com",
     "sbi.co.in", "axisbank.com", "kotak.com", "pnbindia.in",
     "paypal.com", "youtube.com", "flipkart.com", "paytm.com",
-    "phonepe.com", "razorpay.com", "netflix.com", "irctc.co.in"
+    "phonepe.com", "razorpay.com", "netflix.com", "irctc.co.in",
+    "wikipedia.org", "mozilla.org", "stackoverflow.com", "python.org",
+    "pypi.org", "fastapi.tiangolo.com", "tiangolo.com", "cloudflare.com"
 }
 
 PUBLIC_SUBDOMAIN_PROVIDERS = {

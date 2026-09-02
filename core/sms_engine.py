@@ -67,8 +67,13 @@ def compute_sms_risk_score(
             url_scan_results.append({"url": u, "risk_score": 0.0, "reasons": ["Domain model not loaded"]})
             all_urls_trusted = False
 
+    # Check for authentic transactional/OTP/Delivery indicators
     is_transactional_text = any(
-        kw in text_lower for kw in ["debited", "credited", "neft", "otp for", "one time password", "avail bal", "inr ", "rs "]
+        kw in text_lower for kw in [
+            "debited", "credited", "neft", "imps", "otp for", "one time password",
+            "avail bal", "inr ", "rs ", "order #", "delivery partner", "arriving in",
+            "pnr ", "confirmed", "booked", "driver", "ride confirmation"
+        ]
     )
 
     if max_url_risk >= 0.5:

@@ -64,6 +64,7 @@ print("2/3 Fetching High-Reputation Legitimate Safe Domains...")
 print("=" * 80)
 
 safe_urls = set()
+subdomain_prefixes = ["", "www.", "docs.", "developer.", "api.", "blog.", "app.", "support.", "mail.", "m.", "portal.", "store.", "news."]
 
 try:
     print(" -> Fetching OpenDNS Global Top Domains...")
@@ -71,10 +72,13 @@ try:
     safe_resp = requests.get(safe_url, headers=headers, timeout=12)
     if safe_resp.status_code == 200:
         domains = [line.strip() for line in safe_resp.text.split("\n") if line.strip()]
-        for d in domains:
+        for i, d in enumerate(domains[:10000]):
             safe_urls.add("https://" + d)
-            safe_urls.add("https://www." + d)
-        print(f"    Added {len(domains)} top apex domains from OpenDNS.")
+            # Add realistic subdomains to mirror real-world safe web navigation
+            sub = subdomain_prefixes[i % len(subdomain_prefixes)]
+            if sub:
+                safe_urls.add(f"https://{sub}{d}")
+        print(f"    Added top apex domains with realistic subdomains from OpenDNS.")
 except Exception as e:
     print(f"    OpenDNS fetch warning: {e}")
 
